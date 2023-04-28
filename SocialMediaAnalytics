@@ -1,0 +1,27 @@
+--Retrieve all posts by a specific user
+SELECT *
+FROM Posts
+WHERE user_id = <user_id>;
+
+--Count the number of comments on a specific post
+SELECT COUNT(*) AS comment_count
+FROM Comments
+WHERE post_id = <post_id>;
+
+--Query to count the total number of post by a user
+SELECT COUNT(*) AS post_count
+FROM Posts
+WHERE user_id = <user_id>;
+
+--Retrieve post with a specific hashtag
+SELECT *
+FROM Posts
+WHERE content ILIKE '%#<hashtag>%';
+
+--Query to find the most liked posts
+SELECT p.post_id, p.content, COUNT(*) AS like_count
+FROM Posts p
+JOIN Likes 1 ON p.post_id = 1.post_id
+GROUP BY p.post_id, p.content
+ORDER BY like_count DESC
+LIMIT 10;
